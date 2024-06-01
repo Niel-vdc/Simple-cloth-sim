@@ -61,6 +61,7 @@ particleC2.fixed = True
 particleB1.fixed = True
 
 physics.add(particleA1, particleA2, particleA3, particleB1, particleB2, particleB3, particleC1, particleC2, particleC3)
+# physics.add(particleA1, particleA2, particleB1, particleB2)
 
 # physics.add(chordBD)
 

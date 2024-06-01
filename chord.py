@@ -4,22 +4,22 @@ import pygame.mouse
 from particle import *
 
 class Chord:
-    def __init__(self, A, B, colour=(0, 0, 0), width=2, elasticity=0.6) -> None:
+    def __init__(self, A, B, colour=(0, 0, 0), width=2, tension=0.6) -> None:
         self.A = A
         self.B = B
         self.rest = dist(A.pos, B.pos)
         self.colour = colour
         self.width = width
-        self.elasticity = elasticity
+        self.tension = tension
 
     def draw(self, screen):
         pygame.draw.line(screen, self.colour, (self.A.pos), self.B.pos, self.width)
         self.cut()
 
     def pull(self, pxpm):
-        force = pygame.Vector2((self.B.pos.x - self.A.pos.x)/pxpm * self.elasticity, (self.B.pos.y - self.A.pos.y)/pxpm * self.elasticity) 
+        force = pygame.Vector2((self.B.pos.x - self.A.pos.x), (self.B.pos.y - self.A.pos.y)) /pxpm * self.tension
         if dist(self.A.pos, self.B.pos) > self.rest:
-            self.A.apply_force(force)
+            self.A.apply_force(force) 
             self.B.apply_force(-force) #Newton III
     
 
